@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -11,4 +13,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "client")
 public class Client extends Utilisateur{
 
+
+    @OneToMany(mappedBy = "client" , fetch = FetchType.EAGER)
+    private List<Complaint> complaintList;
 }

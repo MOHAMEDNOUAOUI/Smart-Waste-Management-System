@@ -5,33 +5,36 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.jdbc.Work;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "vehicule")
-public class Vehicule {
+@Table(name = "complaint")
+public class Complaint {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @Column(name = "vehicule_number", nullable = false)
     @NotBlank
-    private String vehicule_number;
+    private String description;
     @NotNull
-    private Integer capacity;
-    @Column(name = "location_longitude")
-    private Double location_longitude;
-    @Column(name = "location_latitude")
-    private Double location_latitude;
+    private Integer priority;
+    @NotBlank
+    private String comment;
+    @NotNull
+    private LocalDateTime created_at;
+
+    private LocalDateTime resolved_at;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private Worker worker;
+    private Client client;
 
-    @OneToMany(fetch = FetchType.EAGER , mappedBy = "vehicule")
-    private List<Roots> roots;
+    @OneToMany(mappedBy = "complaint" , fetch = FetchType.EAGER)
+    private List<Media> mediaList;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Bins bins;
 }
