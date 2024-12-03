@@ -11,7 +11,7 @@ public interface  VehiculeService {
     ResponseVehiculeDTO createVehicule(CreateVehiculeDTO createVehiculeDTO);
     Page<ResponseVehiculeDTO> getAllVehicules(Pageable pageable);
     ResponseVehiculeDTO getVehiculeById(Long id);
-    ResponseVehiculeDTO updateUser(CreateVehiculeDTO createVehiculeDTO , Long id);
+    ResponseVehiculeDTO updateVehicule(CreateVehiculeDTO createVehiculeDTO , Long id);
     boolean deleteVehicule(Long id);
 
 }

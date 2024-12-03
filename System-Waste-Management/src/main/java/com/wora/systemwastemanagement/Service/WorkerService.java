@@ -11,7 +11,7 @@ public interface  WorkerService {
     ResponseWorkerDTO createWorker(CreateWorkerDTO createWorkerDTO);
     Page<ResponseWorkerDTO> getAllWorkers(Pageable pageable);
     ResponseWorkerDTO getWorkerById(Long id);
-    ResponseWorkerDTO updateUser(CreateWorkerDTO createWorkerDTO , Long id);
+    ResponseWorkerDTO updateWorker(CreateWorkerDTO createWorkerDTO , Long id);
     boolean deleteWorker(Long id);
 
 }

@@ -11,7 +11,7 @@ public interface  ComplaintService {
     ResponseComplaintDTO createComplaint(CreateComplaintDTO createComplaintDTO);
     Page<ResponseComplaintDTO> getAllComplaints(Pageable pageable);
     ResponseComplaintDTO getComplaintById(Long id);
-    ResponseComplaintDTO updateUser(CreateComplaintDTO createComplaintDTO , Long id);
+    ResponseComplaintDTO updateComplaint(CreateComplaintDTO createComplaintDTO , Long id);
     boolean deleteComplaint(Long id);
 
 }

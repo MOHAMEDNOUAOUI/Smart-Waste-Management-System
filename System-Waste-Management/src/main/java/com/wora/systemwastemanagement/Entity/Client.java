@@ -13,7 +13,6 @@ import java.util.List;
 @Table(name = "client")
 public class Client extends Utilisateur{
 
-
     @OneToMany(mappedBy = "client" , fetch = FetchType.EAGER)
     private List<Complaint> complaintList;
 }

@@ -11,7 +11,7 @@ public interface  RootsService {
     ResponseRootsDTO createRoots(CreateRootsDTO createRootsDTO);
     Page<ResponseRootsDTO> getAllRootss(Pageable pageable);
     ResponseRootsDTO getRootsById(Long id);
-    ResponseRootsDTO updateUser(CreateRootsDTO createRootsDTO , Long id);
+    ResponseRootsDTO updateRoots(CreateRootsDTO createRootsDTO , Long id);
     boolean deleteRoots(Long id);
 
 }

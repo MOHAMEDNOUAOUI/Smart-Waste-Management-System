@@ -11,7 +11,7 @@ public interface  ClientService {
     ResponseClientDTO createClient(CreateClientDTO createClientDTO);
     Page<ResponseClientDTO> getAllClients(Pageable pageable);
     ResponseClientDTO getClientById(Long id);
-    ResponseClientDTO updateUser(CreateClientDTO createClientDTO , Long id);
+    ResponseClientDTO updateClient(CreateClientDTO createClientDTO , Long id);
     boolean deleteClient(Long id);
 
 }

@@ -11,7 +11,7 @@ public interface  BinsService {
     ResponseBinsDTO createBins(CreateBinsDTO createBinsDTO);
     Page<ResponseBinsDTO> getAllBinss(Pageable pageable);
     ResponseBinsDTO getBinsById(Long id);
-    ResponseBinsDTO updateUser(CreateBinsDTO createBinsDTO , Long id);
+    ResponseBinsDTO updateBins(CreateBinsDTO createBinsDTO , Long id);
     boolean deleteBins(Long id);
 
 }

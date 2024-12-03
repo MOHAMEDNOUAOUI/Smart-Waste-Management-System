@@ -11,7 +11,7 @@ public interface  TaskService {
     ResponseTaskDTO createTask(CreateTaskDTO createTaskDTO);
     Page<ResponseTaskDTO> getAllTasks(Pageable pageable);
     ResponseTaskDTO getTaskById(Long id);
-    ResponseTaskDTO updateUser(CreateTaskDTO createTaskDTO , Long id);
+    ResponseTaskDTO updateTask(CreateTaskDTO createTaskDTO , Long id);
     boolean deleteTask(Long id);
 
 }

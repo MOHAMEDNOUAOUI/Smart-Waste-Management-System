@@ -1,12 +1,12 @@
 package com.wora.systemwastemanagement.DTO.Client;
 
+import com.wora.systemwastemanagement.DTO.Utilisateur.ResponseUtilisateurDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class ResponseClientDTO {
+public class ResponseClientDTO extends ResponseUtilisateurDTO {
 
 }
