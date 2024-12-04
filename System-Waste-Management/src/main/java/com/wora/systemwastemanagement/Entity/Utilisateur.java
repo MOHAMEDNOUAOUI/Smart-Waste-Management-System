@@ -1,4 +1,5 @@
 package com.wora.systemwastemanagement.Entity;
+import com.wora.systemwastemanagement.Entity.Enum.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -30,6 +31,9 @@ public class Utilisateur {
     @Column(unique = true , nullable = false)
     @Email(message = "Email should be valid")
     private String email;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @Column(name = "created_at" , nullable = false)
     private LocalDateTime created_at = LocalDateTime.now();
