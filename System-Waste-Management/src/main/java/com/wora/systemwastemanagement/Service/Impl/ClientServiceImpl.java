@@ -51,6 +51,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
 
+
     @Override
     public boolean deleteClient(Long id) {
         Optional<Client> client = clientRepository.findById(id);
