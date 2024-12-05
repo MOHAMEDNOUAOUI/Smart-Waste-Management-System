@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { HeroPageComponent } from '../../components/hero-page/hero-page.component';
+import { NavbarComponent } from "../../components/navbar/navbar.component";
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [HeroPageComponent],
+  imports: [NavbarComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css'
 })

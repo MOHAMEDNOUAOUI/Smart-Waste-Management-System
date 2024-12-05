@@ -1,19 +1,20 @@
 package com.wora.systemwastemanagement.Service.Impl;
 
 import com.wora.systemwastemanagement.Config.JwtTokenUtil;
+import com.wora.systemwastemanagement.DTO.Client.CreateClientDTO;
 import com.wora.systemwastemanagement.DTO.LoginRequestDTO;
 import com.wora.systemwastemanagement.DTO.LoginResponseDTO;
-import com.wora.systemwastemanagement.DTO.RegisterRequestDTO;
-import com.wora.systemwastemanagement.Entity.Enum.Role;
 import com.wora.systemwastemanagement.Entity.Utilisateur;
 import com.wora.systemwastemanagement.Repository.UtilisateurRepository;
 import com.wora.systemwastemanagement.Service.AuthService;
+import com.wora.systemwastemanagement.Service.ClientService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -23,6 +24,7 @@ public class AuthServiceImpl implements AuthService {
     private final JwtTokenUtil jwtTokenUtil;
     private final UtilisateurRepository utilisateurRepository;
     private final PasswordEncoder passwordEncoder;
+    private final ClientService clientService;
 
     @Override
     public LoginResponseDTO login(LoginRequestDTO loginRequest) {
@@ -40,17 +42,17 @@ public class AuthServiceImpl implements AuthService {
         return new LoginResponseDTO(token, role);
     }
 
-    public String register(RegisterRequestDTO registerRequest) {
-        Utilisateur utilisateur = utilisateurRepository.findByUsername(registerRequest.getUsername())
-                .orElseThrow(() ->  new IllegalArgumentException("Username is already taken."));
-
-        Utilisateur user = new Utilisateur();
-        user.setUsername(registerRequest.getUsername());
-        user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
-        user.setEmail(registerRequest.getEmail());
-        user.setRole(Role.ROLE_USER);
-
-        utilisateurRepository.save(utilisateur);
+    @Override
+    public String register(CreateClientDTO createClientDTO) {
+        Optional<Utilisateur> utilisateur = utilisateurRepository.findByUsername(createClientDTO.getUsername());
+        if (utilisateur.isPresent()) {
+            throw new IllegalArgumentException("Username is already taken.");
+        }
+        String encodedPassword = passwordEncoder.encode(createClientDTO.getPassword());
+        createClientDTO.setPassword(encodedPassword);
+        clientService.createClient(createClientDTO);
         return "User registered successfully!";
     }
+
+
 }
