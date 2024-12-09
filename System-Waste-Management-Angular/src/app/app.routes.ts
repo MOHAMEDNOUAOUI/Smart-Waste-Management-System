@@ -9,7 +9,7 @@ export const routes: Routes = [
         path: '',
         component: ClientayoutComponent,
         children: [
-          {path:'home' , component:HomePageComponent},
+          {path:'' , component:HomePageComponent},
           {path:'about' , component:AboutComponent}
         ],
       },

@@ -4,6 +4,7 @@
 .item:hover .icon{
     bottom: 0.4rem;
     color: green;
+    animation: none;
 }
 
 .icon{
@@ -13,4 +14,23 @@
 
 .label {
     opacity: 0;
+}
+
+.active {
+    color: green;
+    animation: motionNavLink 3s ease-in-out infinite;
+}
+
+@keyframes motionNavLink {
+    0%{
+        transform: translateY(0px);
+    }
+
+    50%{
+        transform: translateY(-5px);
+    }
+
+    100%{
+        transform: translateY(0px);
+    }
 }

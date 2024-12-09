@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component , Input } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar-items',
@@ -14,4 +14,11 @@ export class NavBarItemsComponent {
   @Input() color: string = 'text-gray-500'; 
   @Input() label: string = ''; 
   @Input() route: string = '#';
+  @Input() isActive: boolean =false;
+
+  constructor(private router: Router , private activatedRouter: ActivatedRoute){}
+
+  setActive() {
+    this.router.navigate([this.route]);
+  }
 }

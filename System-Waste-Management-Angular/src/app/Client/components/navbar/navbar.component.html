@@ -1,6 +1,6 @@
 <div class="navbar border-green-500 border-x w-full ps-4 pe-4 md:w-auto md:rounded-2xl h-[4rem] flex gap-4 justify-center items-center fixed md:bottom-10 bottom-0 left-1/2 transform -translate-x-1/2 shadow-green backdrop-blur-lg">
-    <app-nav-bar-items icon="fa-solid fa-house" color="text-black" label="Home" route="/home"></app-nav-bar-items>
-    <app-nav-bar-items icon="fa-solid fa-user" color="text-black" label="Profile" route="/profile"></app-nav-bar-items>
-    <app-nav-bar-items icon="fa-solid fa-cog" color="text-black" label="Setting" route="/settings"></app-nav-bar-items>
-    <app-nav-bar-items icon="fa-solid fa-sign-out-alt" color="text-black" label="Logout" route="/logout"></app-nav-bar-items>
+    <app-nav-bar-items icon="fa-solid fa-house" color="text-black" label="Home" route="/" [isActive]="isActiveRoute('/')"></app-nav-bar-items>
+    <app-nav-bar-items icon="fa-solid fa-user" color="text-black" label="Profile" route="/profile" [isActive]="isActiveRoute('/profile')"></app-nav-bar-items>
+    <app-nav-bar-items icon="fa-solid fa-cog" color="text-black" label="Setting" route="/about" [isActive]="isActiveRoute('/about')"></app-nav-bar-items>
+    <app-nav-bar-items icon="fa-solid fa-sign-out-alt" color="text-black" label="Logout" route="/logout" [isActive]="isActiveRoute('/logout')"></app-nav-bar-items>
 </div>
