@@ -8,3 +8,42 @@ backdrop-filter: blur(5px);
 border: 1px solid rgba(255, 255, 255, 0.3);
 box-shadow: rgba(50, 50, 93, 0.25) 0px -18px 40px -12px inset, rgba(0, 0, 0, 0.3) 0px -1px 10px -18px inset;
 }
+
+
+.butt {
+    width: 3rem;
+    height: 4rem;
+    transition: width 0.3s ease-in-out;
+    overflow: hidden;
+    border: 1px solid black;
+    background:transparent;
+    border-radius: 30px;
+    cursor: pointer;
+  }
+
+  .butt::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    transition: height 0.3s ease-in-out;
+    cursor: pointer;
+  }
+
+  .butt:hover::before {
+    height: 0; 
+  }
+  
+
+  
+  .navbar.border-green-500 {
+    width: 15rem;
+    transition: width 0.3s ease-in-out;
+  }
+  
+  .expanded {
+    width: auto;
+  }

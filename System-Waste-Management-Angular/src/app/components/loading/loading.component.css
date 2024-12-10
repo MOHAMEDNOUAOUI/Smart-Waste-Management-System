@@ -1,0 +1,118 @@
+/* Root loading screen */
+#loading {
+  z-index: 100;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.slide {
+  animation: slideout 0.8s ease-out forwards;
+}
+
+.waste {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+}
+
+.welcomeparagraph {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 100;
+}
+
+.go {
+  animation: go 1s ease-out forwards;
+}
+
+.show {
+  animation: textpop 1s ease-in-out forwards;
+}
+
+.up {
+  animation: up 300ms ease-out forwards;
+}
+
+/* Animation for big heading */
+@keyframes textpop {
+  0% {
+    opacity: 0;
+    display: none;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%);
+    display: inline-block;
+  }
+}
+
+@keyframes go {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(200px);
+    opacity: 0;
+    display: none;
+  }
+}
+
+@keyframes up {
+  0% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -150%);
+    opacity: 0;
+    display: none;
+  }
+}
+
+@keyframes down {
+  0%{
+    transform: translate(-50%,-10%);
+    opacity: 0;
+    display: none;
+  }
+  100%{
+    transform: translate(-50%,-50%);
+    opacity: 1;
+    display: inline-block;
+  }
+}
+
+/* Paragraph Styling */
+.para{
+  animation: down 300ms ease-in-out forwards;
+}
+
+@keyframes opacity {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+
+@keyframes slideout {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-100%);
+      display: none;
+    }
+  }

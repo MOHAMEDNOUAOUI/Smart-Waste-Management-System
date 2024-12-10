@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavbarComponent } from "../../components/navbar/navbar.component";
-import { HeroPageHomeComponent } from "../../components/hero-page/hero-page-home/hero-page-home.component";
+import { HeroPageHomeComponent } from "../../components/hero-page-home/hero-page-home.component";
 
 @Component({
   selector: 'app-home-page',

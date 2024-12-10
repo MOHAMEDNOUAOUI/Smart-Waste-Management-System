@@ -15,6 +15,7 @@ export class NavBarItemsComponent {
   @Input() label: string = ''; 
   @Input() route: string = '#';
   @Input() isActive: boolean =false;
+  @Input() image: string = '';
 
   constructor(private router: Router , private activatedRouter: ActivatedRoute){}
 
