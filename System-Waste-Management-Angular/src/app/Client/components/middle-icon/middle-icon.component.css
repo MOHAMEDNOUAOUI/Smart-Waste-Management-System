@@ -1,0 +1,20 @@
+.middle {
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.middle:hover {
+    animation: middle 3s infinite ease-in-out;
+}
+
+@keyframes middle {
+    0%{
+        transform: translateY(0px);
+    }
+    50%{
+        transform: translateY(-10px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}

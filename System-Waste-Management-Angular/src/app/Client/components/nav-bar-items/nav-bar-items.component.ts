@@ -2,12 +2,17 @@ import { CommonModule } from '@angular/common';
 import { Component , Input } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { heroUsers } from '@ng-icons/heroicons/outline';
+import { hugeHome01 , hugeCompass , hugeUserSharing , hugeBookmark02} from '@ng-icons/huge-icons';
+
 @Component({
   selector: 'app-nav-bar-items',
   standalone: true,
-  imports: [CommonModule , RouterModule],
+  imports: [CommonModule , RouterModule , NgIcon],
   templateUrl: './nav-bar-items.component.html',
-  styleUrl: './nav-bar-items.component.css'
+  styleUrl: './nav-bar-items.component.css',
+  viewProviders: [provideIcons({ heroUsers , hugeHome01 , hugeCompass , hugeUserSharing , hugeBookmark02})]
 })
 export class NavBarItemsComponent {
   @Input() icon: string = ''; 

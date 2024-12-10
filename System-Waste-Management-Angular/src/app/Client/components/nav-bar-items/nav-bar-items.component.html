@@ -1,4 +1,6 @@
-<a [routerLink]="route" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" (click)="setActive()" class="item flex flex-col  items-center p-2" [ngClass]="color">
-        <i *ngIf="icon" [class]="icon" class="icon text-xlrelative bottom-0 transition-all duration-300"></i>
-        <img *ngIf="image" [src]="image" class="w-20">
+<a [routerLink]="route"  (click)="setActive()" class="item flex flex-col  items-center p-2" [ngClass]="color">
+       <!--  <i *ngIf="icon" [class]="icon" class="icon text-xlrelative bottom-0 transition-all duration-300"></i> -->
+       <ng-icon *ngIf="icon" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="text-xl" [name]="icon"></ng-icon>
+       <!-- <img *ngIf="image" [src]="image" class="w-20"> -->
+        <span routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}" class="text-[0.7rem] font-light">{{label}}</span>
 </a>

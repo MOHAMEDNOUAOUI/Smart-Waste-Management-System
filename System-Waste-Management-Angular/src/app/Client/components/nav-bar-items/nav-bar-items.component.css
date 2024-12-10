@@ -1,5 +1,7 @@
 .item {
     transition: 300ms ease;
+    font-family: "Inter";
+    font-weight: 300;
 }
 .item:hover .icon{
     bottom: 0.4rem;
@@ -16,8 +18,11 @@
     opacity: 0;
 }
 
-.active {
+ng-icon.active , span.active {
     color: rgb(1, 99, 1);
+}
+
+ng-icon.active {
     animation: motionNavLink 3s ease-in-out infinite;
 }
 

@@ -3,11 +3,12 @@ import { Component } from '@angular/core';
 import { NavBarItemsComponent } from '../nav-bar-items/nav-bar-items.component';
 import { NavigationEnd, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { MiddleIconComponent } from "../middle-icon/middle-icon.component";
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule , NavBarItemsComponent],
+  imports: [CommonModule, NavBarItemsComponent, MiddleIconComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
@@ -29,6 +30,6 @@ export class NavbarComponent {
   }
 
   Spread():void {
-    this.isNotSpread = !this.isNotSpread;
+    this.isNotSpread = false;
   }
 }

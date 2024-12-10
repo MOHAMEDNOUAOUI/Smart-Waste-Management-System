@@ -1,5 +1,7 @@
-<div [ngClass]="{'butt' : isNotSpread , 'navbar border-green-500 border-x w-full ps-4 pe-4 md:w-auto md:rounded-2xl h-[4rem] flex gap-4 justify-center items-center shadow-green backdrop-blur-lg':!isNotSpread}" (click)="Spread()" class="fixed md:bottom-10 bottom-0 left-1/2 transform -translate-x-1/2 ">
-    <app-nav-bar-items [ngClass]="{'hidden': isNotSpread}" icon="fa-solid fa-cog" color="text-black" label="Profile" route="/about" [isActive]="isActiveRoute('/profile')"></app-nav-bar-items>
-    <app-nav-bar-items [ngClass]="{'hidden': isNotSpread}" image="/models/car.gif" color="text-black" label="Home" route="/" [isActive]="isActiveRoute('/')"></app-nav-bar-items>
-    <app-nav-bar-items [ngClass]="{'hidden': isNotSpread}" icon="fa-solid fa-sign-out-alt" color="text-black" label="Logout" route="/logout" [isActive]="isActiveRoute('/logout')"></app-nav-bar-items>
+<div [ngClass]="{'butt' : isNotSpread , 'navbar border-green-500 border-x w-full ps-4 pe-4 md:w-auto md:rounded-2xl h-[4rem] flex gap-2 justify-center items-center shadow-green backdrop-blur-lg':!isNotSpread}" (click)="Spread()" class="fixed md:bottom-10 bottom-0 left-1/2 transform -translate-x-1/2 ">
+    <app-nav-bar-items [ngClass]="{'hidden': isNotSpread}" icon="hugeHome01" color="text-black" label="Home" route="/" [isActive]="isActiveRoute('/profile')"></app-nav-bar-items>
+    <app-nav-bar-items [ngClass]="{'hidden': isNotSpread}" icon="hugeCompass" color="text-black" label="Explore" route="/search" [isActive]="isActiveRoute('/')"></app-nav-bar-items>
+    <app-middle-icon [ngClass]="{'hidden': isNotSpread}" name="hugeBookmark02"></app-middle-icon>
+    <app-nav-bar-items [ngClass]="{'hidden': isNotSpread}" icon="hugeUserSharing" color="text-black" label="Profile" route="/Profile" [isActive]="isActiveRoute('/')"></app-nav-bar-items>
+    <app-nav-bar-items [ngClass]="{'hidden': isNotSpread}" icon="hugeBookmark02" color="text-black" label="Dumps" route="/Dumps" [isActive]="isActiveRoute('/profile')"></app-nav-bar-items>
 </div>

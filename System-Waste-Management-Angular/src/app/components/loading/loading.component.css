@@ -10,7 +10,7 @@
 }
 
 .slide {
-  animation: slideout 0.8s ease-out forwards;
+  animation: slideout 0.8s ease-in-out forwards;
 }
 
 .waste {
@@ -110,8 +110,10 @@
 @keyframes slideout {
     0% {
       transform: translateY(0);
+      opacity: 1;
     }
     100% {
+      opacity: 0;
       transform: translateY(-100%);
       display: none;
     }
