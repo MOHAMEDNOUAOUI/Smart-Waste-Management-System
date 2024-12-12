@@ -1,5 +1,10 @@
-<div class="bg-green-400 w-full h-screen relative flex items-center">
-    <div class="panel absolute h-full w-full md:w-2/5 md:h-[90%] bg-transparent" [ngClass]="{'move-left left-10':isRegister , 'move-right right-10':isLogin}">
-           <router-outlet></router-outlet>
+<div class="bg-Gradiant w-full h-screen relative flex items-center">
+    <!-- Panel with sliding transition -->
+    <div class="panel absolute h-full w-full md:w-2/5 md:h-[90%] bg-white rounded-none md:rounded-3xl transition-all duration-1000 ease-in-out"
+         [ngClass]="{
+           'left-[10%]': isRegister, 
+           'left-[50%]': isLogin}">
+      <router-outlet [ngClass]="{'opacity-0':!isRendered , 'opacityAnimation':isRendered}"></router-outlet>
     </div>
-</div>
+  </div>
+  
