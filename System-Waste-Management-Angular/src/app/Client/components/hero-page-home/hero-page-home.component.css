@@ -1,3 +1,32 @@
 .hero {
-    background-color: rgb(238, 238, 238);
+    background-color: #22e55a;
+}
+
+@keyframes opacityframe {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.custom-shape-divider-bottom-1733926330 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-bottom-1733926330 svg {
+    position: relative;
+    display: block;
+    width: calc(131% + 1.3px);
+    height: 269px;
+}
+
+.custom-shape-divider-bottom-1733926330 .shape-fill {
+    fill: rgb(238, 238, 238);
 }
