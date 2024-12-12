@@ -32,7 +32,6 @@ box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rg
     height: 0;
     transition: height 0.3s ease-in-out;
     cursor: pointer;
-    background-color: rgb(0, 126, 57);
   }
 
   .butt:hover::before {
