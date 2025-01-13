@@ -1,0 +1,14 @@
+<form>
+    <div class="w-full flex flex-col gap-7">
+      <app-inputs type="text" placeholder="Full Name" class="w-full"></app-inputs>
+
+      <app-inputs type="text" [className]="" placeholder="Email" class="w-full"></app-inputs>
+
+      <app-inputs type="password" [className]="" placeholder="Password"  class="w-full"></app-inputs>
+
+      <app-submit-button text="Sign up for free" classes="w-full font-bold text-md"></app-submit-button>
+
+      <p class="text-center font-bold">Already have an account? <span class="text-blue-400" (click)="toLogin()">Sign in</span></p>
+    </div>
+  </form>
+  

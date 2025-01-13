@@ -5,6 +5,8 @@ import { ClientayoutComponent } from './Client/layouts/clientayout/clientayout.c
 import { AboutComponent } from './Client/pages/about/about.component';
 import { LoginComponent } from './authentication-page/login/login.component';
 import { AuthenticationPageComponent } from './authentication-page/authentication-page.component';
+import { AdminDashboardLayoutComponent } from './Dashboard/Admin/Layout/admin-dashboard-layout/admin-dashboard-layout.component';
+import { DashboardPageComponent } from './Dashboard/Admin/Pages/dashboard-page/dashboard-page.component';
 
 export const routes: Routes = [
     {
@@ -22,6 +24,13 @@ export const routes: Routes = [
           {path: 'register' , component:RegisterComponent},
           {path: 'login' , component:LoginComponent}
         ],
+      },
+      {
+        path: 'admin',
+        component:AdminDashboardLayoutComponent,
+        children:[
+          {path:'' , component:DashboardPageComponent}
+        ]
       },
     { path: '**', redirectTo: '/login' },
 ];

@@ -1,0 +1,15 @@
+<div class="relative">
+    <!-- Bind the formControl to the input element -->
+    <input 
+      [type]="isVisible && type === 'password' ? 'text' : type"
+      [placeholder]="placeholder" 
+      [class]="class"
+      [name]="name"
+      class="p-4 rounded-xl text-lg border border-gray-200">
+  
+    <span class="absolute text-lg" *ngIf="type === 'password'" (click)="setVisibility()">
+      <ng-icon *ngIf="isVisible" name="radixEyeOpen"></ng-icon>
+      <ng-icon *ngIf="!isVisible" name="radixEyeClosed"></ng-icon>
+    </span>
+  </div>
+  

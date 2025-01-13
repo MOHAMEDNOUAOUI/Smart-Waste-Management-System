@@ -1,13 +1,11 @@
-import { Component, Input } from '@angular/core';
-import { AppComponent } from "../app.component";
-import { Router, RouterOutlet , NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { fakeAsync } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-authentication-page',
   standalone: true,
-  imports: [CommonModule , RouterOutlet],
+  imports: [CommonModule],
   templateUrl: './authentication-page.component.html',
   styleUrl: './authentication-page.component.css'
 })
@@ -28,6 +26,4 @@ export class AuthenticationPageComponent {
      }
     })
   }
-
-
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,6 +9,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./loading.component.css']
 })
 export class LoadingComponent implements OnInit {
+  @Output() loadingFinished: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   isLoaded: boolean = false;
   isGo :boolean = false;
   isUp :boolean = false;
@@ -26,6 +28,9 @@ export class LoadingComponent implements OnInit {
               this.isParagraph = true;
               setTimeout(() => {
                 this.isLoaded = true
+                setTimeout(() => {
+                  this.loadingFinished.emit(true)
+                },100)
               },2000)
             },100)
           },3000)

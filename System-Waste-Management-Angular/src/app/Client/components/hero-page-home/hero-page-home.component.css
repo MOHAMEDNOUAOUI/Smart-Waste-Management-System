@@ -27,3 +27,16 @@
 .custom-shape-divider-bottom-1733926330 .shape-fill {
     fill: rgb(238, 238, 238);
 }
+
+
+.Headline {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+} 
+
+.Headline .animation {
+    animation: opacityframe 2s ease-in-out forwards;
+}
+

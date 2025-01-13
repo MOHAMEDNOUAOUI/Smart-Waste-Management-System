@@ -1,4 +1,9 @@
 <section class="hero bg-Gradiant w-full h-screen relative">
+
+    <div class="absolute right-4 top-5 flex ">
+            <app-login-or-register-button classes="relative p-3 px-12 bg-white text-black register" route="register" text="Register now"></app-login-or-register-button>
+            <app-login-or-register-button classes="relative p-3 px-12 bg-black text-white login" route="login" text="Login"></app-login-or-register-button>
+    </div>
     
     <div class="custom-shape-divider-bottom-1733926330">
         <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -7,5 +12,12 @@
     </div>
 
 
-</section>
+    <div class="Headline text-center text-white flex flex-col gap-3 text-3xl md:text-5xl font-bold">
+        <h1 [ngClass]="showH1 ? 'animation' : 'opacity-0'" >Together for a Cleaner Tomorrow</h1>
+       <h2 [ngClass]="showH2 ? 'animation' : 'opacity-0'"  >Your Partner in Smart Waste Management</h2>
+   </div>
+  
+   
+
+</section> 
 

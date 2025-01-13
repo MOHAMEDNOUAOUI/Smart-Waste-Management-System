@@ -9,7 +9,9 @@ module.exports = {
         green: '0 4px 6px rgba(34, 197, 94, 0.5)',
       },
       colors: {
-        backgroundColor: '#22e55a'
+        backgroundColor: '#22e55a',
+        AdminPanel : '#F3F4F6',
+        LovedBlackColor : '#111828'
       },
       backgroundImage:{
         'Gradiant' : 'linear-gradient(180deg, rgb(125, 250, 125) 0%, rgb(30, 161, 30) 100%)',

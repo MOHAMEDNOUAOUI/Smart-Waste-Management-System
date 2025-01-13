@@ -8,14 +8,16 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-clientayout',
   standalone: true,
-  imports: [CommonModule , RouterOutlet, NavbarComponent, LoadingComponent, SwitcherbuttonComponent],
+  imports: [CommonModule , RouterOutlet, NavbarComponent, LoadingComponent],
   templateUrl: './clientayout.component.html',
   styleUrl: './clientayout.component.css'
 })
 export class ClientayoutComponent {
-    isSwitchVisible : boolean = true;
+  public isLoading: boolean = true;
 
-    handleSwitch():void {
-        this.isSwitchVisible = false;
-    }
+  onLoadingFinished(isFinished: boolean): void {
+    this.isLoading = !isFinished; 
+  }
+
+
 }

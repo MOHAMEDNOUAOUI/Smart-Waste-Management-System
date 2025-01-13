@@ -1,6 +1,8 @@
 <div>
-   
-   <!-- <app-loading></app-loading>
+    <app-loading (loadingFinished)="onLoadingFinished($event)"></app-loading>
+</div>
+
+<div *ngIf="!isLoading">
     <!-- <app-switcherbutton *ngIf="isSwitchVisible" (switch)="handleSwitch()"></app-switcherbutton> -->
     <app-navbar></app-navbar>
     <router-outlet></router-outlet>
