@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from "../login/login.component";
 import { LoginButtonsComponent } from "../../components/login-buttons/login-buttons.component";
 import { Router } from '@angular/router';
@@ -18,6 +17,5 @@ import { FormComponentComponent } from "../../components/form-component/form-com
 })
 export class RegisterComponent {
   @Input() opacityAnimation: string = '';
-
 
 }

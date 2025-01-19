@@ -46,7 +46,7 @@ public class AuthServiceImpl implements AuthService {
     public String register(CreateClientDTO createClientDTO) {
         Optional<Utilisateur> utilisateur = utilisateurRepository.findByUsername(createClientDTO.getUsername());
         if (utilisateur.isPresent()) {
-            throw new IllegalArgumentException("Username is already taken.");
+            return "Username is already taken.";
         }
         String encodedPassword = passwordEncoder.encode(createClientDTO.getPassword());
         createClientDTO.setPassword(encodedPassword);

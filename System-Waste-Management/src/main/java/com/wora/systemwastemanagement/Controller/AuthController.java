@@ -7,16 +7,14 @@ import com.wora.systemwastemanagement.DTO.LoginResponseDTO;
 import com.wora.systemwastemanagement.Service.AuthService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
 @RestController
 @RequestMapping("/auth")
 @AllArgsConstructor
+@CrossOrigin("http://localhost:4200")
 public class AuthController {
 
     private final AuthService authService;
@@ -31,6 +29,9 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody CreateClientDTO createClientDTO) {
         String response = authService.register(createClientDTO);
+        if (response.equals("Username is already taken.")){
+
+        }
         return ResponseEntity.ok(Map.of("message", response));
     }
 
