@@ -1,4 +1,5 @@
 package com.wora.systemwastemanagement.Entity;
+import com.wora.systemwastemanagement.Entity.Enum.StatutComplaint;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -26,8 +27,10 @@ public class Complaint {
     private String comment;
     @NotNull
     private LocalDateTime created_at;
-
+    @NotNull
     private LocalDateTime resolved_at;
+    @Enumerated(EnumType.STRING)
+    private StatutComplaint status;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Client client;

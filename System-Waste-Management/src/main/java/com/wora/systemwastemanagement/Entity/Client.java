@@ -12,7 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "client")
 public class Client extends Utilisateur{
-
-    @OneToMany(mappedBy = "client" , fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "client" , fetch = FetchType.EAGER , cascade = CascadeType.REMOVE)
     private List<Complaint> complaintList;
 }

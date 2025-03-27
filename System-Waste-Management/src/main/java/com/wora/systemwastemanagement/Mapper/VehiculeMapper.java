@@ -10,5 +10,6 @@ import org.mapstruct.Mapping;
 public interface VehiculeMapper {
 
     Vehicule toEntity(CreateVehiculeDTO createVehiculeDto);
+    @Mapping(source = "routes" , target = "routes")
     ResponseVehiculeDTO toResponse(Vehicule vehicule);
 }

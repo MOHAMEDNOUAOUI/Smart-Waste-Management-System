@@ -13,6 +13,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/bins")
+@CrossOrigin(origins = "http://localhost:4200")
 public class BinsController {
 
     @Autowired
@@ -27,7 +28,10 @@ public class BinsController {
     @GetMapping
     public ResponseEntity<Page<ResponseBinsDTO>> getAllBinss(Pageable pageable) {
         Page<ResponseBinsDTO> response = binsService.getAllBinss(pageable);
-        return ResponseEntity.status(HttpStatus.FOUND).body(response);
+        if(response.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @GetMapping("/{binsId}")

@@ -1,5 +1,5 @@
 package com.wora.systemwastemanagement.Entity;
-import com.wora.systemwastemanagement.Entity.Enum.Role;
+import com.wora.systemwastemanagement.Entity.Enum.Rrole;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -33,7 +32,7 @@ public class Utilisateur {
     private String email;
 
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private Rrole rrole;
 
     @Column(name = "created_at" , nullable = false)
     private LocalDateTime created_at = LocalDateTime.now();

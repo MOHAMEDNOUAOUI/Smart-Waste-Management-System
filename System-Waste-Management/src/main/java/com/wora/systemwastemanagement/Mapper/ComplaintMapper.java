@@ -9,6 +9,8 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface ComplaintMapper {
 
+    @Mapping(target = "bins" , ignore = true)
+    @Mapping(target = "client" , ignore = true)
     Complaint toEntity(CreateComplaintDTO createComplaintDto);
     ResponseComplaintDTO toResponse(Complaint complaint);
 }

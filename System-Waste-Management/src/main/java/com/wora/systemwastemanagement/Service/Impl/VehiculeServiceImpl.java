@@ -1,8 +1,12 @@
 package com.wora.systemwastemanagement.Service.Impl;
+import com.wora.systemwastemanagement.Entity.Worker;
+import com.wora.systemwastemanagement.Repository.WorkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.wora.systemwastemanagement.Repository.VehiculeRepository;
 import com.wora.systemwastemanagement.DTO.Vehicule.CreateVehiculeDTO;
 import com.wora.systemwastemanagement.DTO.Vehicule.ResponseVehiculeDTO;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import com.wora.systemwastemanagement.Service.VehiculeService;
 import com.wora.systemwastemanagement.Mapper.VehiculeMapper;
@@ -23,12 +27,15 @@ public class VehiculeServiceImpl implements VehiculeService {
 
     @Autowired
     private VehiculeMapper vehiculeMapper;
+    @Autowired
+    private WorkerRepository workerRepository;
 
     @Override
     public ResponseVehiculeDTO createVehicule(CreateVehiculeDTO createVehiculeDTO) {
+        Worker worker = workerRepository.findById(createVehiculeDTO.getWorker_id()).orElseThrow(() -> new EntityNotFoundException("Worker not found"));
         Vehicule entity = vehiculeMapper.toEntity(createVehiculeDTO);
-        Vehicule vehicule = vehiculeRepository.save(entity);
-        return vehiculeMapper.toResponse(entity);
+        entity.setAssignedWorker(worker);
+        return vehiculeMapper.toResponse(vehiculeRepository.save(entity));
     }
 
     @Override
@@ -63,7 +70,42 @@ public class VehiculeServiceImpl implements VehiculeService {
         }
     }
 
-     @Override
+    @Override
+    public List<ResponseVehiculeDTO> workerVehicule() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null){
+            throw new RuntimeException ("No authentication found");
+        }
+
+        String email = authentication.getName();
+        Worker worker = workerRepository.findByEmail(email)
+                .orElseThrow(() -> new EntityNotFoundException("Worker not found"));
+
+        return worker.getVehiculeList().stream()
+                .map(vehiculeMapper::toResponse)
+                .toList();
+    }
+
+    @Override
+    public ResponseVehiculeDTO assignWorkerToVehicule(Long vehiculeId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null){
+            throw new RuntimeException ("No authentication found");
+        }
+        String email = authentication.getName();
+
+        Vehicule vehicule = vehiculeRepository.findById(vehiculeId)
+                .orElseThrow(() -> new RuntimeException("Vehicule not found"));
+
+        Worker worker = workerRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Worker not found"));
+
+        vehicule.setAssignedWorker(worker);
+        return vehiculeMapper.toResponse(vehiculeRepository.save(vehicule));
+    }
+
+
+    @Override
     public ResponseVehiculeDTO updateVehicule(CreateVehiculeDTO createVehiculeDTO , Long id) {
         return null;
     }

@@ -11,8 +11,11 @@ import com.wora.systemwastemanagement.DTO.Roots.ResponseRootsDTO;
 import com.wora.systemwastemanagement.DTO.Roots.CreateRootsDTO;
 import jakarta.validation.Valid;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/roots")
+@CrossOrigin(origins = "http://localhost:4200")
 public class RootsController {
 
     @Autowired
@@ -27,7 +30,10 @@ public class RootsController {
     @GetMapping
     public ResponseEntity<Page<ResponseRootsDTO>> getAllRootss(Pageable pageable) {
         Page<ResponseRootsDTO> response = rootsService.getAllRootss(pageable);
-        return ResponseEntity.status(HttpStatus.FOUND).body(response);
+        if (response.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @GetMapping("/{rootsId}")
@@ -48,6 +54,15 @@ public class RootsController {
     public ResponseEntity<ResponseRootsDTO> updateRoots(@RequestBody CreateRootsDTO createRootsDTO , @PathVariable("rootsId") Long id){
         ResponseRootsDTO response = rootsService.updateRoots(createRootsDTO , id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @GetMapping("/workerRoutes")
+    public ResponseEntity<List<ResponseRootsDTO>> getRootsRoutes(){
+        List<ResponseRootsDTO> responseRootsDTOS = rootsService.getWorkerRootes();
+        if (responseRootsDTOS != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(responseRootsDTOS);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
 
 }

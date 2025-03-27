@@ -35,6 +35,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
+
     @ExceptionHandler(HandlerMethodValidationException.class)
     public ResponseEntity<ErrorDTO> handleHandlerMethodValidationException(HandlerMethodValidationException ex) {
         List<String> errors = ex.getAllValidationResults()

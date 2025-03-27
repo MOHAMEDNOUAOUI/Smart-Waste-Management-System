@@ -1,4 +1,5 @@
 package com.wora.systemwastemanagement.Entity;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.wora.systemwastemanagement.Entity.Embd.RootsIds;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -15,21 +17,23 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Table(name = "roots")
 public class Roots {
-    @EmbeddedId
-    private RootsIds rootsIds;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @NotNull
     private LocalDateTime start_time;
+
     @NotNull
     private LocalDateTime end_time;
+
     @NotNull
     private Float distance;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @MapsId("BinsId")
-    private Bins bins;
+    @OneToMany(mappedBy = "route", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Bins> bins;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @MapsId("VehiculeId")
+    @JsonManagedReference
     private Vehicule vehicule;
 }

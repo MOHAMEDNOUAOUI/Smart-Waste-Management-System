@@ -11,14 +11,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateVehiculeDTO {
-
     @NotBlank
     private String vehicule_number;
+
     @NotNull
     private Integer capacity;
+
     @NotNull
     private Double location_longitude;
+
     @NotNull
     private Double location_latitude;
 
+    @NotNull
+    private Long worker_id;
 }

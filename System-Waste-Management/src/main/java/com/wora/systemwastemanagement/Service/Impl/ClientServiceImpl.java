@@ -1,4 +1,5 @@
 package com.wora.systemwastemanagement.Service.Impl;
+import com.wora.systemwastemanagement.Entity.Worker;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.wora.systemwastemanagement.Repository.ClientRepository;
 import com.wora.systemwastemanagement.DTO.Client.CreateClientDTO;
@@ -28,7 +29,7 @@ public class ClientServiceImpl implements ClientService {
     public ResponseClientDTO createClient(CreateClientDTO createClientDTO) {
         Client entity = clientMapper.toEntity(createClientDTO);
         Client client = clientRepository.save(entity);
-        return clientMapper.toResponse(entity);
+        return clientMapper.toResponse(client);
     }
 
     @Override
@@ -53,19 +54,19 @@ public class ClientServiceImpl implements ClientService {
 
 
     @Override
-    public boolean deleteClient(Long id) {
-        Optional<Client> client = clientRepository.findById(id);
-        if (client.isPresent()){
-            clientRepository.deleteById(id);
-            return true;
-        }
-        else {
-            throw new EntityNotFoundException("Client not found");
-        }
+    public void deleteClient(Long id) {
+       if(!clientRepository.existsById(id)){
+           throw new EntityNotFoundException("This Client with the id " + id + " doesn not exist");
+       }
+       clientRepository.deleteById(id);
     }
 
      @Override
     public ResponseClientDTO updateClient(CreateClientDTO createClientDTO , Long id) {
-        return null;
+         Client client = clientRepository.findById(id)
+                 .orElseThrow(() -> new EntityNotFoundException("Client not found with id " + id));
+         clientMapper.updateClient(createClientDTO , client);
+         Client updatedWorker = clientRepository.save(client);
+         return clientMapper.toResponse(updatedWorker);
     }
 }

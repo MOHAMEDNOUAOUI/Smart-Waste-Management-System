@@ -13,5 +13,6 @@ public interface  RootsService {
     ResponseRootsDTO getRootsById(Long id);
     ResponseRootsDTO updateRoots(CreateRootsDTO createRootsDTO , Long id);
     boolean deleteRoots(Long id);
+    List<ResponseRootsDTO> getWorkerRootes();
 
 }

@@ -21,18 +21,22 @@ public class Bins {
 
     @NotBlank
     private String location;
+
     @NotNull
     private Double capacity;
+
     @NotNull
     private Float location_latitude;
+
     @NotNull
     private Float location_longitude;
 
     private LocalDateTime last_maintenance;
 
-    @OneToMany(mappedBy = "bins" , fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "bins", fetch = FetchType.EAGER)
     private List<Complaint> complaintList;
 
-    @OneToMany(mappedBy = "bins" , fetch = FetchType.EAGER)
-    private List<Roots> roots;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "route_id") // Ensure the correct column name is mapped
+    private Roots route;
 }

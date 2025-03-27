@@ -1,6 +1,7 @@
 package com.wora.systemwastemanagement.DTO.Utilisateur;
 
 
+import com.wora.systemwastemanagement.Entity.Enum.Rrole;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -15,8 +16,10 @@ public class CreateUtilisateurDTO {
     private String username;
     @NotBlank
     private String password;
-    @NotBlank(message = "message must not be null")
+    @NotBlank(message = "email must not be null")
     @Email(message = "email is already in use")
     private String email;
+    @NotBlank
+    private Rrole rrole;
 }
 

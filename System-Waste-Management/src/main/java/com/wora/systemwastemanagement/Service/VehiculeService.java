@@ -13,5 +13,8 @@ public interface  VehiculeService {
     ResponseVehiculeDTO getVehiculeById(Long id);
     ResponseVehiculeDTO updateVehicule(CreateVehiculeDTO createVehiculeDTO , Long id);
     boolean deleteVehicule(Long id);
+    List<ResponseVehiculeDTO> workerVehicule();
+    ResponseVehiculeDTO assignWorkerToVehicule(Long vehiculeId);
+
 
 }

@@ -1,4 +1,8 @@
 package com.wora.systemwastemanagement.Service.Impl;
+import com.wora.systemwastemanagement.Entity.Client;
+import com.wora.systemwastemanagement.Entity.Enum.Rrole;
+import com.wora.systemwastemanagement.Repository.ClientRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.wora.systemwastemanagement.Repository.WorkerRepository;
 import com.wora.systemwastemanagement.DTO.Worker.CreateWorkerDTO;
@@ -11,6 +15,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,12 +28,14 @@ public class WorkerServiceImpl implements WorkerService {
 
     @Autowired
     private WorkerMapper workerMapper;
+    @Autowired
+    private ClientRepository clientRepository;
 
     @Override
     public ResponseWorkerDTO createWorker(CreateWorkerDTO createWorkerDTO) {
         Worker entity = workerMapper.toEntity(createWorkerDTO);
         Worker worker = workerRepository.save(entity);
-        return workerMapper.toResponse(entity);
+        return workerMapper.toResponse(worker);
     }
 
     @Override
@@ -42,29 +49,44 @@ public class WorkerServiceImpl implements WorkerService {
 
     @Override
     public ResponseWorkerDTO getWorkerById(Long id) {
-        if(workerRepository.existsById(id)){
-            Worker worker = workerRepository.findById(id).get();
-            return workerMapper.toResponse(worker);
-        }else{
-            throw new EntityNotFoundException("This Worker with the id " + id + " doesn not exist");
+        Worker worker = workerRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("This Worker with the id " + id + " does not exist"));
+
+        return workerMapper.toResponse(worker);
+    }
+
+
+
+    @Override
+    public void deleteWorker(Long id) {
+        if (!workerRepository.existsById(id)) {
+            throw new EntityNotFoundException("Worker not found");
         }
+        workerRepository.deleteById(id);
+    }
+
+    @Override
+    public ResponseWorkerDTO hire(Long id) {
+        Client client = clientRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Client not found"));
+        Worker worker = new Worker();
+        worker.setHire_date(LocalDateTime.now());
+        worker.setSalaire(2000.0);
+        worker.setJob_title("worker");
+        worker.setContact_info("N/A");
+        worker.setRrole(Rrole.ROLE_WORKER);
+        Worker Saved = workerRepository.save(worker);
+        workerRepository.flush();
+        clientRepository.deleteById(client.getId());
+        return workerMapper.toResponse(Saved);
     }
 
 
     @Override
-    public boolean deleteWorker(Long id) {
-        Optional<Worker> worker = workerRepository.findById(id);
-        if (worker.isPresent()){
-            workerRepository.deleteById(id);
-            return true;
-        }
-        else {
-            throw new EntityNotFoundException("Worker not found");
-        }
-    }
-
-     @Override
     public ResponseWorkerDTO updateWorker(CreateWorkerDTO createWorkerDTO , Long id) {
-        return null;
+         Worker worker = workerRepository.findById(id)
+                 .orElseThrow(() -> new EntityNotFoundException("Worker not found with id " + id));
+         workerMapper.updateWorker(createWorkerDTO , worker);
+        Worker updatedWorker = workerRepository.save(worker);
+        return workerMapper.toResponse(updatedWorker);
     }
 }

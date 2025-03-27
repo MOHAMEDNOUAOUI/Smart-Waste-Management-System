@@ -27,7 +27,10 @@ public class ClientController {
     @GetMapping
     public ResponseEntity<Page<ResponseClientDTO>> getAllClients(Pageable pageable) {
         Page<ResponseClientDTO> response = clientService.getAllClients(pageable);
-        return ResponseEntity.status(HttpStatus.FOUND).body(response);
+        if (response.hasContent()) {
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
 
 
@@ -40,10 +43,8 @@ public class ClientController {
 
     @DeleteMapping("/{clientId}")
     public ResponseEntity<?> deleteClientById(@PathVariable("clientId") Long id){
-        if(clientService.deleteClient(id)){
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body("Deleted Succefully");
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Something went wrong");
+        clientService.deleteClient(id);
+        return ResponseEntity.ok().body("Client deleted successfully");
     }
 
     @PatchMapping("/{clientId}")

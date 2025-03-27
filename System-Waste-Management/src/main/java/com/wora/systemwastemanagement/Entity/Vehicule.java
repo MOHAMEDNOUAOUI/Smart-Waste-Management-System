@@ -1,4 +1,5 @@
 package com.wora.systemwastemanagement.Entity;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -19,7 +20,7 @@ public class Vehicule {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "vehicule_number", nullable = false)
+    @Column(name = "vehicule_number", nullable = false, unique = true)
     @NotBlank
     private String vehicule_number;
     @NotNull
@@ -30,8 +31,10 @@ public class Vehicule {
     private Double location_latitude;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private Worker worker;
+    @JoinColumn(name = "worker_id", nullable = false)
+    private Worker assignedWorker;
 
-    @OneToMany(fetch = FetchType.EAGER , mappedBy = "vehicule")
-    private List<Roots> roots;
+    @OneToMany(mappedBy = "vehicule", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @JsonManagedReference
+    private List<Roots> routes;
 }

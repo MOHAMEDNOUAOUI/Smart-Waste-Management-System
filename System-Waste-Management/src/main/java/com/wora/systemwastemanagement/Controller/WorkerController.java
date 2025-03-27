@@ -1,5 +1,7 @@
 package com.wora.systemwastemanagement.Controller;
 
+import com.wora.systemwastemanagement.DTO.Vehicule.ResponseVehiculeDTO;
+import com.wora.systemwastemanagement.Service.VehiculeService;
 import com.wora.systemwastemanagement.Service.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,12 +13,17 @@ import com.wora.systemwastemanagement.DTO.Worker.ResponseWorkerDTO;
 import com.wora.systemwastemanagement.DTO.Worker.CreateWorkerDTO;
 import jakarta.validation.Valid;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/worker")
+@CrossOrigin(origins = "http://localhost:4200")
 public class WorkerController {
 
     @Autowired
     private WorkerService workerService;
+    @Autowired
+    private VehiculeService vehiculeService;
 
     @PostMapping
     public ResponseEntity<ResponseWorkerDTO> createWorker(@RequestBody @Valid CreateWorkerDTO createWorkerDTO) {
@@ -27,7 +34,10 @@ public class WorkerController {
     @GetMapping
     public ResponseEntity<Page<ResponseWorkerDTO>> getAllWorkers(Pageable pageable) {
         Page<ResponseWorkerDTO> response = workerService.getAllWorkers(pageable);
-        return ResponseEntity.status(HttpStatus.FOUND).body(response);
+        if (response.getTotalElements() > 0) {
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
 
     @GetMapping("/{workerId}")
@@ -37,12 +47,11 @@ public class WorkerController {
     }
 
     @DeleteMapping("/{workerId}")
-    public ResponseEntity<?> deleteWorkerById(@PathVariable("workerId") Long id){
-        if(workerService.deleteWorker(id)){
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body("Deleted Succefully");
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Something went wrong");
+    public ResponseEntity<?> deleteWorkerById(@PathVariable("workerId") Long id) {
+        workerService.deleteWorker(id);
+        return ResponseEntity.ok().body("Worker deleted successfully.");
     }
+
 
     @PatchMapping("/{workerId}")
     public ResponseEntity<ResponseWorkerDTO> updateWorker(@RequestBody CreateWorkerDTO createWorkerDTO , @PathVariable("workerId") Long id){
@@ -50,4 +59,10 @@ public class WorkerController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+
+    @PostMapping("/hire/{clientId}")
+    public ResponseEntity<ResponseWorkerDTO> hireWorker(@PathVariable("clientId") Long clientId){
+        ResponseWorkerDTO responseWorkerDTO = workerService.hire(clientId);
+        return ResponseEntity.status(HttpStatus.CREATED).body(responseWorkerDTO);
+    }
 }

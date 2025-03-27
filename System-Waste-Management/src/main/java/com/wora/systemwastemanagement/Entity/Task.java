@@ -1,4 +1,6 @@
 package com.wora.systemwastemanagement.Entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.wora.systemwastemanagement.Entity.Enum.TaskStatut;
 import com.wora.systemwastemanagement.Entity.Enum.TypeTask;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -20,15 +22,29 @@ public class Task {
     private Long id;
 
     @NotNull
+    private String taskName;
+
+    @NotNull
+    private String taskDescription;
+
+    @NotNull
     private Integer priority;
+
+    @NotNull
+    private LocalDateTime created_time;
 
     @NotNull
     private LocalDateTime due_date;
 
-    @NotBlank
+    @NotNull
     @Enumerated(EnumType.STRING)
     private TypeTask type_task;
 
-    @ManyToOne()
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private TaskStatut taskStatus;
+
+    @ManyToOne
+    @JsonIgnore
     private Worker worker;
 }

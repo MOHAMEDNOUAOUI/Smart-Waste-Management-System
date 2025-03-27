@@ -15,12 +15,12 @@ import java.time.LocalDateTime;
 public class CreateWorkerDTO extends CreateUtilisateurDTO {
 
     @NotNull
-    private Double salaire;
+    private Double salaire = 0.0;
     @NotNull
-    private LocalDateTime hire_date;
+    private LocalDateTime hire_date = LocalDateTime.now();
     @NotNull
-    private String contact_info;
+    private String contact_info = "N/A";
     @NotNull
-    private String job_title;
+    private String job_title = "Worker";
 
 }

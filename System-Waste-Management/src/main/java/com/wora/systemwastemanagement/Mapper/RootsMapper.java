@@ -8,7 +8,7 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface RootsMapper {
-
+    @Mapping(target = "bins" , ignore = true)
     Roots toEntity(CreateRootsDTO createRootsDto);
     ResponseRootsDTO toResponse(Roots roots);
 }
